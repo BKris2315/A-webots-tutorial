@@ -12,7 +12,7 @@ The list of the worlds and what they do:
 3. **ControlWheelie** - A simple controller for Wheelie. It can now go along a polygon. No PID.
 4. **WheelieEncoders** - Adding some position sensors, computing pose. Movement along a polygon. no PID.
 5. **LineFollower** - Wheelie follows now a line/finds the track if initially is set off-track. Obstacle avoidance included. With PID.
-6. **turnForGivenTime** - A simple trick to get a turn with specific angle. Making a *delay* function to *sleep* our simulation**.**
+6. **turnForGivenTime** - A simple trick to get a turn with specific angle. Making a *delay* function to *sleep* our simulation.
 7. **wallfollower** - Wheelie now follows a wall and solves a maze based on left wall following rule. With sensors and PID.
 8. **mazeV1** - Wheelie follows a circular maze track. Makes complex decisions where to turn and stop. With sensors and PID.
 9. **ReproducingSquare** - We create a new type of robot: the [Pololu Romi](https://www.pololu.com/product/3500/pictures). It will reproduce a square shaped trajectory. The corresponding encoder values for the trajectory were prerecorded and based on them the positions for each step computed. Now we do the job backward: knowing the positions we determine the needed velocities and reproduce the track.
