@@ -18,7 +18,7 @@ The list of the worlds and what they do:
 9. **ReproducingSquare** - We create a new type of robot: the [Pololu Romi](https://www.pololu.com/product/3500/pictures). It will reproduce a square shaped trajectory. The corresponding encoder values for the trajectory were prerecorded and based on them the positions for each step computed. Now we do the job backward: knowing the positions we determine the needed velocities and reproduce the track.
 10. **FeneralIKRomi** - a more general Inverse Kinematics for Romi. Given a (x,y) point in the plane Romi goes there avoiding possible obstacles.
 
-By simply downloading the files the world files an PROTOs can be accessed and freely used/modified.
+By simply downloading the files the world files and PROTOs can be accessed and freely used/modified.
 
 ## NOTE
 
