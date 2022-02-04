@@ -1,0 +1,105 @@
+#VRML_OBJ R2022a utf8
+DEF Wheelie Robot {
+  rotation 0 0 1 -1.5754
+  children [
+    DEF Body_traf Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Body Shape {
+          appearance PBRAppearance {
+            baseColor 0 0.333333 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor1"
+        }
+        PositionSensor {
+          name "ps1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation 0 1 0 1.5753999999999997
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0.666667 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE Wheel
+        physics DEF wheel_phys Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor2"
+        }
+        PositionSensor {
+          name "ps2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation 0 1 0 1.5753999999999997
+        children [
+          USE Wheel
+        ]
+        name "solid(1)"
+        boundingObject USE Wheel
+        physics USE wheel_phys
+      }
+    }
+    Solid {
+      translation 0.015 -0.0425 0.07
+      children [
+        DEF Eye Shape {
+          appearance PBRAppearance {
+            baseColor 0.666667 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    Solid {
+      translation -0.015 -0.0425 0.07
+      children [
+        USE Eye
+      ]
+      name "solid(3)"
+    }
+  ]
+  boundingObject USE Body_traf
+  physics Physics {
+  }
+  controller "Wheelie_driver_with_encoders"
+}

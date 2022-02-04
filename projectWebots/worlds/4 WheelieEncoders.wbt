@@ -1,0 +1,194 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.10061562125864223 0.2799758178755956 -0.9547198741848987 0.7200243276739947
+  position -1.7027353608277254 1.3610557330525255 0.9882125115751639
+  follow "robot:solid(3)"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+DEF Wheelie Robot {
+  rotation 0 0 1 -1.5754
+  children [
+    DEF Body_traf Transform {
+      translation 0 0 0.0425
+      children [
+        DEF Body Shape {
+          appearance PBRAppearance {
+            baseColor 0 0.333333 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    DEF wheelR HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor1"
+        }
+        PositionSensor {
+          name "ps1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04499989872758694 -1.0776290556009215e-06 0.024993843712674362
+        rotation -0.02511123025643065 0.9993660395675633 -0.02523777078214312 1.5760625169504399
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0.666667 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE Wheel
+        physics DEF wheel_phys Physics {
+        }
+      }
+    }
+    DEF wheelL HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor2"
+        }
+        PositionSensor {
+          name "ps2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.04500014428240732 -1.557979571503181e-06 0.024994467006905653
+        rotation -0.025111230622076364 0.9993660395819879 -0.025237769847144032 1.5760625166292634
+        children [
+          USE Wheel
+        ]
+        name "solid(1)"
+        boundingObject USE Wheel
+        physics USE wheel_phys
+      }
+    }
+    DEF casterFront BallJoint {
+      jointParameters BallJointParameters {
+        anchor 0 -0.035 0.005
+      }
+      endPoint Solid {
+        translation 0 -0.035 0.005
+        rotation 0 1 0 0
+        children [
+          DEF Caster_wheel Shape {
+            appearance PBRAppearance {
+              roughness 1
+              metalness 0
+            }
+            geometry Sphere {
+              radius 0.005
+            }
+          }
+        ]
+        name "solid(6)"
+        boundingObject DEF Caster_wheel Shape {
+          appearance PBRAppearance {
+            roughness 1
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.005
+          }
+        }
+        physics Physics {
+        }
+      }
+    }
+    DEF casterBack BallJoint {
+      jointParameters BallJointParameters {
+        anchor 0 0.035 0.005
+      }
+      endPoint Solid {
+        translation 0 0.035 0.005
+        rotation 0 1 0 0
+        children [
+          DEF Caster_wheel Shape {
+            appearance PBRAppearance {
+              roughness 1
+              metalness 0
+            }
+            geometry Sphere {
+              radius 0.005
+            }
+          }
+        ]
+        name "solid(4)"
+        boundingObject DEF Caster_wheel Shape {
+          appearance PBRAppearance {
+            roughness 1
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.005
+          }
+        }
+        physics Physics {
+        }
+      }
+    }
+    DEF eyeR Solid {
+      translation 0.015 -0.0425 0.07
+      children [
+        DEF Eye Shape {
+          appearance PBRAppearance {
+            baseColor 0.666667 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    DEF eyeL Solid {
+      translation -0.015 -0.0425 0.07
+      children [
+        USE Eye
+      ]
+      name "solid(3)"
+    }
+    DistanceSensor {
+      translation -0.02 0 0.0025
+      rotation 0.5773489358556708 0.5773509358554485 -0.5773509358554485 2.0944
+      name "dsr"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0.02 0 0.0025
+      rotation 0.5773489358556708 0.5773509358554485 -0.5773509358554485 2.0944
+      name "dsl"
+      type "infra-red"
+    }
+  ]
+  boundingObject USE Body_traf
+  physics Physics {
+  }
+  controller "Wheelie_driver"
+}

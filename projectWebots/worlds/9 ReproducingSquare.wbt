@@ -1,0 +1,322 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+  basicTimeStep 52.5
+}
+Viewpoint {
+  orientation 0.029545575377724 -0.9959391548386699 -0.08504268830907985 5.611908405074049
+  position -0.9129581799047404 -0.038519591841879364 0.7628765226149448
+}
+RectangleArena {
+  floorSize 2 2
+}
+Background {
+  skyColor [
+    0.25098 0.25098 0.290196
+  ]
+}
+TexturedBackgroundLight {
+}
+DEF ROMI Robot {
+  children [
+    DEF dsf1 DistanceSensor {
+      translation 0.06 -0.04 0.025
+      rotation 0 0 1 -0.523595307179586
+      children [
+        Solid {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0.333333 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf1"
+      type "infra-red"
+    }
+    DEF dsf2 DistanceSensor {
+      translation 0.07 0 0.025
+      children [
+        Solid {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0.333333 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf2"
+      type "infra-red"
+    }
+    DEF dsf3 DistanceSensor {
+      translation 0.06 0.04 0.025
+      rotation 0 0 1 0.524
+      children [
+        Solid {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0 0.333333 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf3"
+      type "infra-red"
+    }
+    DEF patch Solid {
+      translation 0.06 0 0.035
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.001
+            radius 0.008
+          }
+        }
+      ]
+      name "patch"
+    }
+    Solid {
+      translation 0 0.0495 0.05125
+      children [
+        DEF wheelax Shape {
+          appearance PBRAppearance {
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 0.02 0.0325
+          }
+        }
+      ]
+      name "WheelAxis"
+      boundingObject USE wheelax
+      physics Physics {
+      }
+    }
+    DEF Board Solid {
+      translation 0 0 0.04
+      children [
+        DEF boardbase Shape {
+          appearance PBRAppearance {
+            baseColor 0.152941 0.152941 0.152941
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.085 0.1 0.01
+          }
+        }
+      ]
+      name "board"
+      boundingObject USE boardbase
+      physics Physics {
+      }
+    }
+    DEF Boardtop Solid {
+      translation 0 0 0.05
+      children [
+        DEF boardtop Shape {
+          appearance PBRAppearance {
+            baseColor 0.282353 0.305882 0.345098
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.07 0.07 0.02
+          }
+        }
+      ]
+      name "boardtop"
+      boundingObject USE boardtop
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 0 -0.0495 0.05125
+      children [
+        Shape {
+          appearance PBRAppearance {
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.03 0.02 0.0325
+          }
+        }
+      ]
+      name "WheelAxis(1)"
+      boundingObject USE wheelax
+      physics Physics {
+      }
+    }
+    DEF Frame Group {
+      children [
+        DEF CasterF BallJoint {
+          jointParameters BallJointParameters {
+            anchor 0.055 0 0.01
+          }
+          endPoint DEF Caster Solid {
+            translation 0.055 0 0.01
+            rotation 0 1 0 0
+            children [
+              DEF CasterShape Shape {
+                appearance PBRAppearance {
+                  roughness 1
+                  metalness 0
+                }
+                geometry Sphere {
+                  radius 0.01
+                }
+              }
+            ]
+            name "caster"
+            boundingObject USE CasterShape
+            physics Physics {
+            }
+          }
+        }
+        DEF CasterB BallJoint {
+          jointParameters BallJointParameters {
+            anchor -0.055 0 0.01
+          }
+          endPoint DEF Caster Solid {
+            translation -0.055 0 0.01
+            rotation 0 1 0 0
+            children [
+              DEF CasterShape Shape {
+                appearance PBRAppearance {
+                  roughness 1
+                  metalness 0
+                }
+                geometry Sphere {
+                  radius 0.01
+                }
+              }
+            ]
+            name "caster(1)"
+            boundingObject USE CasterShape
+            physics Physics {
+            }
+          }
+        }
+        DEF LeftWheel HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 1 0
+            anchor 0 0.06575 0.0346
+          }
+          device [
+            DEF lmr RotationalMotor {
+              name "lmr"
+              maxVelocity 20
+            }
+            PositionSensor {
+              name "psl"
+            }
+          ]
+          endPoint Solid {
+            translation 0 0.06575 0.0346
+            rotation 1 0 0 1.57
+            children [
+              DEF RomiWheel Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.0346
+                }
+              }
+            ]
+            boundingObject USE RomiWheel
+            physics DEF RomiWheelPhys Physics {
+            }
+          }
+        }
+        DEF RightWheel HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 1 0
+            anchor 0 -0.06575 0.0346
+          }
+          device [
+            PositionSensor {
+              name "psr"
+            }
+            DEF rmr RotationalMotor {
+              name "rmr"
+              maxVelocity 20
+            }
+          ]
+          endPoint Solid {
+            translation 0 -0.06575 0.0346
+            rotation 1 0 0 1.57
+            children [
+              DEF RomiWheel Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.0346
+                }
+              }
+            ]
+            name "solid(1)"
+            boundingObject USE RomiWheel
+            physics DEF RomiWheelPhys Physics {
+            }
+          }
+        }
+        DEF Body Transform {
+          translation 0 0 0.025
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.02
+                radius 0.07
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "romi"
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "RomiTrajRepr"
+}

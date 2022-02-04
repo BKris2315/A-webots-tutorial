@@ -1,0 +1,462 @@
+#VRML_OBJ R2022a utf8
+DEF Wheelie Robot {
+  translation 0.01894 -0.47283 -1.11022e-16
+  rotation 0 0 1 3.14159
+  children [
+    DEF BAR Group {
+      children [
+        DEF barattachL Solid {
+          translation 0.03 -0.04 0.04
+          children [
+            DEF barattachL Shape {
+              appearance PBRAppearance {
+                baseColor 1 0.333333 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.03 0.01
+              }
+            }
+          ]
+          name "barattachL"
+          boundingObject USE barattachL
+          physics Physics {
+          }
+        }
+        DEF barattachR Solid {
+          translation -0.03 -0.04 0.04
+          children [
+            DEF barattachR Shape {
+              appearance PBRAppearance {
+                baseColor 1 0.333333 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.03 0.01
+              }
+            }
+          ]
+          name "barattachR"
+          boundingObject USE barattachR
+          physics Physics {
+          }
+        }
+        DEF Bar Solid {
+          translation 0 -0.06 0.04
+          children [
+            DEF bar Shape {
+              appearance PBRAppearance {
+                baseColor 1 0.333333 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.1 0.01 0.015
+              }
+            }
+          ]
+          name "bar"
+          boundingObject USE bar
+          physics Physics {
+          }
+        }
+      ]
+    }
+    DEF Body_traf Transform {
+      translation 0 0 0.0425
+      children [
+        DEF Body Shape {
+          appearance PBRAppearance {
+            baseColor 0 0.333333 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 35.48382491535622
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor1"
+        }
+        PositionSensor {
+          name "ps1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04499989872758694 -4.273942334853422e-06 0.025004560106899606
+        rotation -0.6695605869522139 0.31496078148302087 -0.6726725254741802 2.5339798360710613
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0.666667 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE Wheel
+        physics DEF wheel_phys Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 48.91923410005523
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor2"
+        }
+        PositionSensor {
+          name "ps2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.04500014428240732 -5.740995134422855e-06 0.02500028685849094
+        rotation -0.5390495036283917 0.6450889431069551 -0.5415587577716164 1.999971174968663
+        children [
+          USE Wheel
+        ]
+        name "solid(1)"
+        boundingObject USE Wheel
+        physics USE wheel_phys
+      }
+    }
+    BallJoint {
+      jointParameters BallJointParameters {
+        position -7.662022957687196
+        anchor 0 -0.035 0.005
+      }
+      endPoint Solid {
+        translation -1.0277347028814145e-10 -0.03499999886404851 0.0050017305977733285
+        rotation -0.8449519518024174 0.33215230346766683 0.41920287027453434 2.436997440344162
+        children [
+          DEF Caster_wheel Shape {
+            appearance PBRAppearance {
+              roughness 1
+              metalness 0
+            }
+            geometry Sphere {
+              radius 0.005
+            }
+          }
+        ]
+        name "solid(6)"
+        boundingObject DEF Caster_wheel Shape {
+          appearance PBRAppearance {
+            roughness 1
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.005
+          }
+        }
+        physics Physics {
+        }
+      }
+    }
+    BallJoint {
+      jointParameters BallJointParameters {
+        position 9.531939083757475
+        anchor 0 0.035 0.005
+      }
+      endPoint Solid {
+        translation -7.565922195415171e-11 0.0350000008497357 0.005001272640298966
+        rotation -0.8336670627743551 -0.22017971629312735 -0.5064781544926271 2.437372992533903
+        children [
+          DEF Caster_wheel Shape {
+            appearance PBRAppearance {
+              roughness 1
+              metalness 0
+            }
+            geometry Sphere {
+              radius 0.005
+            }
+          }
+        ]
+        name "solid(4)"
+        boundingObject DEF Caster_wheel Shape {
+          appearance PBRAppearance {
+            roughness 1
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.005
+          }
+        }
+        physics Physics {
+        }
+      }
+    }
+    DistanceSensor {
+      translation -0.02 -0.06 0.0324999
+      rotation 0.5773489358556708 0.5773509358554485 -0.5773509358554485 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.666667 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "dsr"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0 -0.06 0.0324999
+      rotation 0.5773489358556708 0.5773509358554485 -0.5773509358554485 2.0944
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.666667 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "dsm"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0.02 -0.06 0.0324999
+      rotation 0.5773489358556708 0.5773509358554485 -0.5773509358554485 2.0944
+      children [
+        Solid {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.005 0.005
+              }
+            }
+          ]
+        }
+      ]
+      name "dsl"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation -0.0399996 -0.0253397 0.0725011
+      rotation 2.2250199999905048e-06 -1.8931899999919209e-06 0.9999999999957325 -2.3561953071795863
+      children [
+        Solid {
+          rotation 0 1 0 0
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.005 0.005
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf1"
+    }
+    DistanceSensor {
+      translation -0.0149997 -0.0425 0.0725003
+      rotation 2.4206499999917205e-06 -9.90502999996612e-07 0.9999999999965796 -1.8325953071795862
+      children [
+        Solid {
+          rotation 0 1 0 -1.5707953071795862
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.005 0.005
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf2"
+    }
+    DistanceSensor {
+      translation 0.0150003 -0.0425 0.0725
+      rotation -1.4877799999853769e-06 4.176629999958949e-06 -0.9999999999901712 1.309
+      children [
+        Solid {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.005 0.005
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf3"
+    }
+    DistanceSensor {
+      translation 0.0399996 -0.0253393 0.0725011
+      rotation 5.263889999713779e-07 1.0414999999433688e-05 -0.9999999999456255 0.523601
+      children [
+        Solid {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.005 0.005
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf4"
+    }
+    DistanceSensor {
+      translation 0.0450621 -0.0149804 0.0725016
+      rotation 0.27974010365477736 0.8664353210485701 -0.41356415324188295 5.92879e-06
+      children [
+        Solid {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.005 0.005
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf5"
+    }
+    DistanceSensor {
+      translation 0.0300621 0.0350196 0.0725017
+      rotation 5.663319999692065e-06 8.756389999523883e-06 0.9999999999456264 0.523596
+      children [
+        Solid {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.005 0.005
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf6"
+    }
+    DistanceSensor {
+      translation -0.0300621 0.0350196 0.0725017
+      rotation 4.572629999740044e-06 9.63283999945237e-06 0.9999999999431497 2.67416
+      children [
+        Solid {
+          rotation 0 1 0 0
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.005 0.005
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf7"
+    }
+    DistanceSensor {
+      translation -0.0450621 -0.015 0.0725016
+      rotation 2.568459999990645e-06 -8.292599999969797e-07 0.9999999999963578 3.14159
+      children [
+        Solid {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.005 0.005
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf8"
+    }
+    DistanceSensor {
+      translation 0 0.04502 0.0725012
+      rotation -3.3977199999752487e-06 -1.7391999999873305e-06 -0.9999999999927154 -1.5707953071795862
+      children [
+        Solid {
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.666667 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.005 0.005 0.005
+              }
+            }
+          ]
+        }
+      ]
+      name "dsf9"
+    }
+  ]
+  boundingObject USE Body_traf
+  physics Physics {
+  }
+  controller "wallfollowerWheelie"
+}

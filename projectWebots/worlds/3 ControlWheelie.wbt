@@ -1,0 +1,114 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.24907051749261785 -0.07768234651149648 0.9653648690295433 3.726499479520654
+  position 1.7961512225856096 1.0249940584284145 1.3633939200088576
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  rotation 0 1 0 0
+}
+DEF Wheelie Robot {
+  rotation 0 1 0 0
+  children [
+    DEF Body_traf Transform {
+      translation 0 0 0.0415
+      children [
+        DEF Body Shape {
+          appearance PBRAppearance {
+            baseColor 0 0.333333 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 74.30451341663375
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.045 0 0.025
+        rotation -0.45968476944041564 0.7585678802163787 -0.4618058941249468 1.8480991684814825
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0.666667 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE Wheel
+        physics DEF wheel_phys Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 45.46771633588641
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "motor2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045 0 0.025
+        rotation -0.5584352866355049 -0.6110773118923051 -0.5610120761006807 4.234549887576968
+        children [
+          USE Wheel
+        ]
+        name "solid(1)"
+        boundingObject USE Wheel
+        physics USE wheel_phys
+      }
+    }
+    Solid {
+      translation 0.015 -0.0425 0.07
+      children [
+        DEF Eye Shape {
+          appearance PBRAppearance {
+            baseColor 0.666667 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    Solid {
+      translation -0.015 -0.0425 0.07
+      children [
+        USE Eye
+      ]
+      name "solid(3)"
+    }
+  ]
+  boundingObject USE Body_traf
+  physics Physics {
+  }
+  controller "Wheelie_driver"
+}
