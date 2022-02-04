@@ -1,4 +1,4 @@
-# A-webots-tutorial
+# A webots tutorial
 A repository for a Webots tutorial series. The series contains a a few **world files**, **controllers** and **protos** as well.
 
 The controllers are in some case far from the optimized version, since the aim was to create them as detailed as possible to understand what’s going on.
